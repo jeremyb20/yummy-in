@@ -37,9 +37,11 @@ const users = require('./back-end/routes/users');
 const companys = require('./back-end/routes/companys');
 
 app.use(bodyParser.urlencoded({
-  extended: false
+  extended: false,
+  parameterLimit: '500000'
 }));
-
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 app.use(cookieParser());
 
 app.use(express.json());
