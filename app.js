@@ -86,11 +86,6 @@ app.use(flash());
 app.use('/users', users);
 app.use('/company', companys);
 
-// Index Route
-app.get('/', (req, res) => {
-  res.send('invaild endpoint');
-});
-
 app.get('/*', function(re,res){
     res.sendFile(path.join(__dirname+ '/dist/yummy-in/index.html'));
 })
