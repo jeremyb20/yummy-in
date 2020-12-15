@@ -1,0 +1,158 @@
+
+#HomeComponent{
+
+    .card {
+        width: 32%;
+        padding: 30px;
+        box-shadow: 0px 8px 16px 0px #1976D2;
+        max-width: 511px
+    }
+
+    @media screen and (max-width: 900px){
+        .card{
+            border-radius: 4px;
+            background: #fff;
+            box-shadow: 1 6px 10px #1976D2, 0 0 6px #1976D2;
+              transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+          padding: 0px;
+          cursor: pointer;
+        }
+    }
+    
+    .card{
+        border-radius: 4px;
+        background: #fff;
+        box-shadow: 1 6px 10px #1976D2, 0 0 6px #1976D2;
+          transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+      padding: 14px 26px 18px 36px;
+      cursor: pointer;
+    }
+    
+    .card:hover{
+        transform: scale(1.05);
+        box-shadow: 1 12px 20px #1976D2, 0 0 6px #1976D2;
+        transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+    }
+
+    .card2:hover{
+        transform: scale(1.05);
+        box-shadow: 1px 12px 20px #1976D2, 0 0 6px #1976D2;
+        transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+    }
+    
+    .card0 {
+        width: 100%;
+        padding-right: 30px;
+        box-shadow: none
+    }
+    
+    .card1 {
+        background: linear-gradient(rgba(255, 255, 255, .2), rgba(255, 255, 255, .2)), url("../../assets/empresarial-account.jpg");
+        background-repeat: no-repeat;
+        background-size: contain;
+        min-height: 600px
+    }
+    
+    .card3 {
+        background: linear-gradient(rgba(255, 255, 255, .2), rgba(255, 255, 255, .2)), url("../../assets/repartidor.jpg");
+        background-repeat: no-repeat;
+        background-size: contain;
+        min-height: 600px
+    }
+    
+    .btn-yellow {
+        border: 2px solid #F9A825;
+        background-color: #F9A825;
+        color: #fff;
+        font-weight: bold;
+        letter-spacing: 1px
+    }
+    
+    .btn-yellow:hover {
+        background-color: #F57F17;
+        border: 2px solid #F57F17
+    }
+    
+    .btn-inverse {
+        border: 2px solid #F9A825;
+        background-color: transparent;
+        color: #F9A825;
+        font-weight: bold;
+        letter-spacing: 1px
+    }
+    
+    .btn-inverse:hover {
+        background-color: #F57F17;
+        color: #fff;
+        border: 2px solid #F57F17
+    }
+    
+    ::placeholder {
+        color: #E0E0E0;
+        opacity: 1
+    }
+    
+    :-ms-input-placeholder {
+        color: #E0E0E0
+    }
+    
+    ::-ms-input-placeholder {
+        color: #E0E0E0
+    }
+    
+    input {
+        padding: 1px 0px 3px 0px;
+        border: none;
+        border-bottom: 1px solid lightgrey;
+        margin-bottom: 3px;
+        margin-top: 2px;
+        box-sizing: border-box;
+        color: #000;
+        font-size: 16px;
+        letter-spacing: 1px;
+        font-weight: 500
+    }
+    
+    input:focus {
+        -moz-box-shadow: none !important;
+        -webkit-box-shadow: none !important;
+        box-shadow: none !important;
+        border-bottom: 1px solid #EF5350;
+        outline-width: 0
+    }
+    
+    button:focus {
+        -moz-box-shadow: none !important;
+        -webkit-box-shadow: none !important;
+        box-shadow: none !important;
+        outline-width: 0
+    }
+    
+    a:hover {
+        color: inherit
+    }
+    
+    .text-sm {
+        font-size: 14px
+    }
+    
+    .text-dim {
+        color: #BDBDBD
+    }
+    
+    .icon {
+        width: 20px;
+        height: 20px;
+        cursor: pointer
+    }
+    
+    @media screen and (max-width: 1056px) {
+        .card {
+            width: 100%
+        }
+    
+        .align {
+            justify-content: center !important
+        }
+    }
+}

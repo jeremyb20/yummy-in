@@ -25,12 +25,21 @@
             "aot": true,
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/webfonts"
             ],
             "styles": [
-              "src/styles.scss"
+                { "input": "node_modules/bootstrap/scss/bootstrap.scss", "bundleName": "styles/vendor" },
+                { "input": "node_modules/sweetalert2/src/sweetalert2.scss", "bundleName": "styles/vendor" },
+                { "input": "node_modules/@ng-select/ng-select/scss/default.theme.scss", "bundleName": "styles/vendor" },
+                { "input": "src/styles.scss", "bundleName": "styles/vendor" }
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/popper.js/dist/umd/popper.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "node_modules/sweetalert2/dist/sweetalert2.js"
+            ]
           },
           "configurations": {
             "production": {
