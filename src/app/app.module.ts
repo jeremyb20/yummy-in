@@ -26,6 +26,9 @@ import { LoginDriverComponent } from './login/login-driver/login-driver.componen
 import { RegisterUserComponent } from './register/register-user/register-user.component';
 import { RegisterCompanyComponent } from './register/register-company/register-company.component';
 import { RegisterDriverComponent } from './register/register-driver/register-driver.component';
+import { ForgotCompanyComponent } from './forgot/forgot-company/forgot-company.component';
+import { ForgotUserComponent } from './forgot/forgot-user/forgot-user.component';
+import { ForgotDriverComponent } from './forgot/forgot-driver/forgot-driver.component';
 
 export function tokenGetter() {
   return localStorage.getItem("id_token");
@@ -43,7 +46,10 @@ export function tokenGetter() {
     LoginDriverComponent,
     RegisterUserComponent,
     RegisterCompanyComponent,
-    RegisterDriverComponent
+    RegisterDriverComponent,
+    ForgotCompanyComponent,
+    ForgotUserComponent,
+    ForgotDriverComponent
   ],
   imports: [
     BrowserModule,

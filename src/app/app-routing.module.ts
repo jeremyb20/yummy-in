@@ -8,6 +8,9 @@ import { LoginDriverComponent } from './login/login-driver/login-driver.componen
 import { RegisterUserComponent } from './register/register-user/register-user.component';
 import { RegisterCompanyComponent } from './register/register-company/register-company.component';
 import { RegisterDriverComponent } from './register/register-driver/register-driver.component';
+import { ForgotCompanyComponent } from './forgot/forgot-company/forgot-company.component';
+import { ForgotUserComponent } from './forgot/forgot-user/forgot-user.component';
+import { ForgotDriverComponent } from './forgot/forgot-driver/forgot-driver.component';
 
 
 const routes: Routes = [
@@ -21,7 +24,10 @@ const routes: Routes = [
           { path: 'login-driver', component: LoginDriverComponent },
           { path: 'register-user', component: RegisterUserComponent },
           { path: 'register-company', component: RegisterCompanyComponent },
-          { path: 'register-driver', component: RegisterDriverComponent }
+          { path: 'register-driver', component: RegisterDriverComponent },
+          { path: 'forgot-company', component: ForgotCompanyComponent },
+          { path: 'forgot-user', component: ForgotUserComponent },
+          { path: 'forgot-driver', component: ForgotDriverComponent }
           // { path: 'maintenance', component: MaintenanceComponent },
       ]
   },
