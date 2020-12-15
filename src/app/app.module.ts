@@ -41,6 +41,7 @@ import { DashboardDriverComponent } from './dashboard/dashboard-driver/dashboard
 import { ProfileDriverComponent } from './profile/profile-driver/profile-driver.component';
 import { ProfileCompanyComponent } from './profile/profile-company/profile-company.component';
 import { ProfileUserComponent } from './profile/profile-user/profile-user.component';
+import { AdminMasterComponent } from './admin-master/admin-master.component';
 
 export function tokenGetter() {
   return localStorage.getItem("id_token");
@@ -71,7 +72,8 @@ export function tokenGetter() {
     DashboardDriverComponent,
     ProfileDriverComponent,
     ProfileCompanyComponent,
-    ProfileUserComponent
+    ProfileUserComponent,
+    AdminMasterComponent
   ],
   imports: [
     BrowserModule,

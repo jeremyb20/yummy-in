@@ -32,6 +32,17 @@ mongoose.connect(process.env.BD_URL, {
 
 const app = express();
 
+const users = require('./back-end/routes/users');
+const companys = require('./back-end/routes/companys');
+
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
+
+require('./back-end/config/passport')(passport);
+app.use(flash());
+app.use('/users', users);
+app.use('/company', companys);
 
 app.use(express.static(__dirname + '/dist/yummy-in'));
 app.get('/*', function(re,res){

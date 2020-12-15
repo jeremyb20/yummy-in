@@ -1,0 +1,9 @@
+<div id="tools">start:
+    <form [formGroup]="loginForm" (ngSubmit)="calcRoute()" action="">
+        <input type="text" formControlName="start" class="form-control" name="start" id="start" value="union square, NY" />end:
+        <input type="text" formControlName="end" class="form-control" name="end" id="end" value="times square, NY" />
+        <input type="submit" />
+    </form>
+    
+</div>
+<div id="map_canvas" style="width:100%;height:100%;"></div>

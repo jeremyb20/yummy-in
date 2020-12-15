@@ -24,6 +24,7 @@ import { DashboardDriverComponent } from './dashboard/dashboard-driver/dashboard
 import { ProfileUserComponent } from './profile/profile-user/profile-user.component';
 import { ProfileCompanyComponent } from './profile/profile-company/profile-company.component';
 import { ProfileDriverComponent } from './profile/profile-driver/profile-driver.component';
+import { AdminMasterComponent } from './admin-master/admin-master.component';
 
 
 const routes: Routes = [
@@ -50,7 +51,8 @@ const routes: Routes = [
   { 
       path: '',
       component: MainLayoutComponent, 
-      children: [            
+      children: [    
+        { path: 'admin', component: AdminMasterComponent },        
         { path: 'dashboard-user', component: DashboardUserComponent,canActivate: [AdminGuard] },
         { path: 'dashboard-company', component: DashboardCompanyComponent,canActivate: [AdminGuard] },
         { path: 'dashboard-driver', component: DashboardDriverComponent,canActivate: [AdminGuard] },
