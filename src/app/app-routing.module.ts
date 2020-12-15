@@ -16,6 +16,14 @@ import { ResetUserComponent } from './reset/reset-user/reset-user.component';
 import { ResetDriverComponent } from './reset/reset-driver/reset-driver.component';
 
 import { NotFoundComponent } from './not-found/not-found.component';
+import { AdminGuard } from  './common/admin/admin.guard';
+
+import { DashboardUserComponent } from './dashboard/dashboard-user/dashboard-user.component';
+import { DashboardCompanyComponent } from './dashboard/dashboard-company/dashboard-company.component';
+import { DashboardDriverComponent } from './dashboard/dashboard-driver/dashboard-driver.component';
+import { ProfileUserComponent } from './profile/profile-user/profile-user.component';
+import { ProfileCompanyComponent } from './profile/profile-company/profile-company.component';
+import { ProfileDriverComponent } from './profile/profile-driver/profile-driver.component';
 
 
 const routes: Routes = [
@@ -43,6 +51,13 @@ const routes: Routes = [
       path: '',
       component: MainLayoutComponent, 
       children: [            
+        { path: 'dashboard-user', component: DashboardUserComponent,canActivate: [AdminGuard] },
+        { path: 'dashboard-company', component: DashboardCompanyComponent,canActivate: [AdminGuard] },
+        { path: 'dashboard-driver', component: DashboardDriverComponent,canActivate: [AdminGuard] },
+      
+        { path: 'profile-user', component: ProfileUserComponent ,canActivate: [AdminGuard]},
+        { path: 'profile-company', component: ProfileCompanyComponent ,canActivate: [AdminGuard]},
+        { path: 'profile-driver', component: ProfileDriverComponent ,canActivate: [AdminGuard]},
         { path: '404', component: NotFoundComponent},
         { path: '**', redirectTo: '/404' }
 

@@ -35,6 +35,13 @@ import { ResetDriverComponent } from './reset/reset-driver/reset-driver.componen
 
 import { NotFoundComponent } from './not-found/not-found.component';
 
+import { DashboardUserComponent } from './dashboard/dashboard-user/dashboard-user.component';
+import { DashboardCompanyComponent } from './dashboard/dashboard-company/dashboard-company.component';
+import { DashboardDriverComponent } from './dashboard/dashboard-driver/dashboard-driver.component';
+import { ProfileDriverComponent } from './profile/profile-driver/profile-driver.component';
+import { ProfileCompanyComponent } from './profile/profile-company/profile-company.component';
+import { ProfileUserComponent } from './profile/profile-user/profile-user.component';
+
 export function tokenGetter() {
   return localStorage.getItem("id_token");
 }
@@ -58,7 +65,13 @@ export function tokenGetter() {
     ResetCompanyComponent,
     ResetUserComponent,
     ResetDriverComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    DashboardUserComponent,
+    DashboardCompanyComponent,
+    DashboardDriverComponent,
+    ProfileDriverComponent,
+    ProfileCompanyComponent,
+    ProfileUserComponent
   ],
   imports: [
     BrowserModule,

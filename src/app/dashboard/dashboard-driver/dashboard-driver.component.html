@@ -1,0 +1,27 @@
+<!-- <agm-map [latitude]="lat" [longitude]="lng">
+    <agm-direction 
+      [origin]="origin" 
+      [destination]="destination"
+    >
+    </agm-direction>
+  </agm-map> -->
+
+  <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" (mapClick)="mapClicked($event)" [disableDefaultUI]="false">
+
+    <agm-marker *ngFor="let m of markers; let i = index" [latitude]="m.lat" [longitude]="m.lng" [label]="m.label" [iconUrl]="{url:m.photo, scaledSize:{height:45, width:40}}">
+        
+      <agm-info-window #infowindow [isOpen]="showInfo" >
+        <h5>Es tu ubicacion actual?</h5>
+        <p>Si no es la Ubicacion puedes cambiarla haciendo click</p>
+        <button class="btn" (click)="changePosition()" >Cambiar ubicacion</button>
+        <button class="btn btn-success" (click)="savePosition()" >Guardar ubicacion</button>
+      </agm-info-window>
+      
+    </agm-marker>
+    <agm-direction [origin]="origin" [destination]="destination">
+  </agm-direction>
+  
+  </agm-map>
+  
+  <button class="btn btn-info m-4" (click)="getCurrentPosition()" >Mi Ubicacion Actual</button> 
+  <button class="btn btn-info m-4" (click)="getDirection()">Selecionar mi destino</button> 
