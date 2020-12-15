@@ -21,6 +21,8 @@ import { MainLayoutComponent } from './layouts/main-layout/main-layout.component
 import { LoginLayoutComponent } from './layouts/login-layout/login-layout.component';
 import { NotificationComponent } from './notification/notification.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
+import { LoginCompanyComponent } from './login/login-company/login-company.component';
+import { LoginDriverComponent } from './login/login-driver/login-driver.component';
 
 export function tokenGetter() {
   return localStorage.getItem("id_token");
@@ -33,7 +35,9 @@ export function tokenGetter() {
     MainLayoutComponent,
     LoginLayoutComponent,
     NotificationComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    LoginCompanyComponent,
+    LoginDriverComponent
   ],
   imports: [
     BrowserModule,
