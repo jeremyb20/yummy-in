@@ -12,7 +12,6 @@ const app = express();
 require('dotenv').config();
 
 var fileupload = require('express-fileupload');
-const { element } = require('protractor');
 
 app.use(fileupload({
   useTempFiles:true
