@@ -29,6 +29,11 @@ import { RegisterDriverComponent } from './register/register-driver/register-dri
 import { ForgotCompanyComponent } from './forgot/forgot-company/forgot-company.component';
 import { ForgotUserComponent } from './forgot/forgot-user/forgot-user.component';
 import { ForgotDriverComponent } from './forgot/forgot-driver/forgot-driver.component';
+import { ResetCompanyComponent } from './reset/reset-company/reset-company.component';
+import { ResetUserComponent } from './reset/reset-user/reset-user.component';
+import { ResetDriverComponent } from './reset/reset-driver/reset-driver.component';
+
+import { NotFoundComponent } from './not-found/not-found.component';
 
 export function tokenGetter() {
   return localStorage.getItem("id_token");
@@ -49,7 +54,11 @@ export function tokenGetter() {
     RegisterDriverComponent,
     ForgotCompanyComponent,
     ForgotUserComponent,
-    ForgotDriverComponent
+    ForgotDriverComponent,
+    ResetCompanyComponent,
+    ResetUserComponent,
+    ResetDriverComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

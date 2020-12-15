@@ -11,6 +11,11 @@ import { RegisterDriverComponent } from './register/register-driver/register-dri
 import { ForgotCompanyComponent } from './forgot/forgot-company/forgot-company.component';
 import { ForgotUserComponent } from './forgot/forgot-user/forgot-user.component';
 import { ForgotDriverComponent } from './forgot/forgot-driver/forgot-driver.component';
+import { ResetCompanyComponent } from './reset/reset-company/reset-company.component';
+import { ResetUserComponent } from './reset/reset-user/reset-user.component';
+import { ResetDriverComponent } from './reset/reset-driver/reset-driver.component';
+
+import { NotFoundComponent } from './not-found/not-found.component';
 
 
 const routes: Routes = [
@@ -27,7 +32,10 @@ const routes: Routes = [
           { path: 'register-driver', component: RegisterDriverComponent },
           { path: 'forgot-company', component: ForgotCompanyComponent },
           { path: 'forgot-user', component: ForgotUserComponent },
-          { path: 'forgot-driver', component: ForgotDriverComponent }
+          { path: 'forgot-driver', component: ForgotDriverComponent },
+          { path: 'reset-company/:token', component: ResetCompanyComponent },
+          { path: 'reset-user/:token', component: ResetUserComponent },
+          { path: 'reset-driver/:token', component: ResetDriverComponent },
           // { path: 'maintenance', component: MaintenanceComponent },
       ]
   },
@@ -35,6 +43,7 @@ const routes: Routes = [
       path: '',
       component: MainLayoutComponent, 
       children: [            
+        { path: '404', component: NotFoundComponent},
         { path: '**', redirectTo: '/404' }
 
       ]
