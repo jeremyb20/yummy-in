@@ -1,0 +1,104 @@
+<div id="register-user">
+  <div class="container-fluid">
+    <div class="pt-4">
+       <div class="card bg-light">
+        <article class="card-body mx-auto pt-1" style="max-width: 400px;">
+          <form [formGroup]="registerForm" (ngSubmit)="onRegisterSubmit()">
+            <h4>Crear cuenta</h4>
+          <p>
+            <a (click)="signInWithGoogle()" class="btn btn-block btn-google"> <i class="fab fa-google"></i>   Login via Google</a>
+            <a (click)="signInWithFB()" class="btn btn-block btn-facebook"> <i class="fab fa-facebook-f"></i>   Login via facebook</a>
+          </p>
+            <div class="form-group input-group">
+              <div class="input-group-prepend">
+                  <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+              </div>
+              <input type="text" formControlName="name" class="form-control" placeholder="Nombre completo" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+              <div *ngIf="submitted && f.name.errors" class="invalid-feedback" [ngClass]="{ 'remove-margin text-center': submitted && f.name.errors }">
+                  <div *ngIf="f.name.errors.required">Usuario es requerido</div>
+              </div>
+            </div> 
+            <div class="form-group input-group">
+              <div class="input-group-prepend">
+                  <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+              </div>
+              <input type="text" formControlName="username" class="form-control" placeholder="Nombre Usuario" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+              <div *ngIf="submitted && f.username.errors" class="invalid-feedback" [ngClass]="{ 'remove-margin text-center': submitted && f.username.errors }">
+                  <div *ngIf="f.username.errors.required">Usuario es requerido</div>
+              </div>
+            </div> 
+            <div class="form-group input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+              </div>
+              <input type="text" formControlName="email" placeholder="Correo electronico" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+              <div *ngIf="submitted && f.email.errors" class="invalid-feedback" [ngClass]="{ 'remove-margin text-center': submitted && f.email.errors }">
+                  <div *ngIf="f.email.errors.required">Email es requerido</div>
+                  <div *ngIf="f.email.errors.email">Email debe tener un correo valido</div>
+              </div>
+            </div> 
+            <div class="form-group input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
+              </div>
+              <select class="custom-select" style="max-width: 90px;">
+                  <option selected="">+506</option>
+              </select>
+              <input formControlName="phone" pattern="\d*" class="form-control" placeholder="Numero telefonico" maxlength="8" [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" />
+              <div *ngIf="submitted && f.phone.errors" class="invalid-feedback" [ngClass]="{ 'remove-margin text-center': submitted && f.phone.errors }">
+                  <div *ngIf="f.phone.errors.required">Telefono es requerido</div>
+                  <div *ngIf="f.phone.errors.minlength">Telefono debe ser al menos 8 digitos</div>
+                  <div *ngIf="f.phone.errors.pattern">Solo se permiten numeros</div>
+              </div>
+            </div>  
+            <div class="form-group input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+              </div>
+              <input type="password" formControlName="password" class="form-control" placeholder="Contraseña" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+              <div *ngIf="submitted && f.password.errors" class="invalid-feedback" [ngClass]="{ 'remove-margin text-center': submitted && f.password.errors }">
+                  <div *ngIf="f.password.errors.required">Contraseña es requerido</div>
+                  <div *ngIf="f.password.errors.minlength">Contraseña debe ser al menos 6 caracteres</div>
+              </div>
+            </div> 
+            <div class="form-group input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+              </div>
+              <input type="password" formControlName="confirmPassword" placeholder="Confirmar contraseña" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" />
+              <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback" [ngClass]="{ 'remove-margin text-center': submitted && f.confirmPassword.errors }">
+                  <div *ngIf="f.confirmPassword.errors.required">Confirmar contraseña es requerido</div>
+                  <div *ngIf="f.confirmPassword.errors.mustMatch">Contraseña no son iguales</div>
+              </div>
+            </div> 
+            <div class="form-group mb-1 text-center">
+              <label class="font-weight-bold">Foto:</label>
+              <input #photoinput type="file" name="image" accept="image/*" class="d-none"
+                (change)="processFile($event)">
+              <img [src]="photoSelected || '../../../assets/upload.png'" alt="" style="height: 66px;" class="img-fluid" (click)="photoinput.click()" srcset="">
+            </div>
+            <div class="form-group form-check">
+              <input type="checkbox" formControlName="acceptTerms" id="acceptTerms" class="form-check-input" [ngClass]="{ 'is-invalid': submitted && f.acceptTerms.errors }" />
+              <label for="acceptTerms" class="font-weight-bold form-check-label">Accepto Terminos & Condiciones</label>
+              <div *ngIf="submitted && f.acceptTerms.errors" class="invalid-feedback">Acceptar Ts & Cs Es requerido</div>
+          </div>                                      
+            <div class="form-group">
+                <button type="submit" class="btn btn-yellow btn-block"> <i *ngIf="!loading" class="fas fa-plus-circle"></i>
+                  <svg *ngIf="loading" class="loader" viewBox="0 0 24 24">
+                    <circle class="loader__value" cx="12" cy="12" r="10" />
+                    <circle class="loader__value" cx="12" cy="12" r="10" />
+                    <circle class="loader__value" cx="12" cy="12" r="10" />
+                    <circle class="loader__value" cx="12" cy="12" r="10" />
+                    <circle class="loader__value" cx="12" cy="12" r="10" />
+                    <circle class="loader__value" cx="12" cy="12" r="10" />
+                  </svg>
+                  Crear Cuenta
+                </button>
+            </div>       
+            <p class="text-center">Tiene una cuenta? <a [routerLink]="['/login-company']">Iniciar sesion</a> </p>                                                                 
+          </form>
+        </article>
+      </div> 
+    </div>
+  </div> 
+</div>

@@ -23,6 +23,9 @@ import { NotificationComponent } from './notification/notification.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { LoginCompanyComponent } from './login/login-company/login-company.component';
 import { LoginDriverComponent } from './login/login-driver/login-driver.component';
+import { RegisterUserComponent } from './register/register-user/register-user.component';
+import { RegisterCompanyComponent } from './register/register-company/register-company.component';
+import { RegisterDriverComponent } from './register/register-driver/register-driver.component';
 
 export function tokenGetter() {
   return localStorage.getItem("id_token");
@@ -37,7 +40,10 @@ export function tokenGetter() {
     NotificationComponent,
     ToolbarComponent,
     LoginCompanyComponent,
-    LoginDriverComponent
+    LoginDriverComponent,
+    RegisterUserComponent,
+    RegisterCompanyComponent,
+    RegisterDriverComponent
   ],
   imports: [
     BrowserModule,

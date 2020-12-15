@@ -5,6 +5,9 @@ import { LoginLayoutComponent } from './layouts/login-layout/login-layout.compon
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
 import { LoginCompanyComponent } from './login/login-company/login-company.component';
 import { LoginDriverComponent } from './login/login-driver/login-driver.component';
+import { RegisterUserComponent } from './register/register-user/register-user.component';
+import { RegisterCompanyComponent } from './register/register-company/register-company.component';
+import { RegisterDriverComponent } from './register/register-driver/register-driver.component';
 
 
 const routes: Routes = [
@@ -15,7 +18,10 @@ const routes: Routes = [
           { path: '', redirectTo: 'home',  pathMatch: 'full' }, 
           { path: 'home', component: HomeComponent },
           { path: 'login-company', component: LoginCompanyComponent },
-          { path: 'login-driver', component: LoginDriverComponent }
+          { path: 'login-driver', component: LoginDriverComponent },
+          { path: 'register-user', component: RegisterUserComponent },
+          { path: 'register-company', component: RegisterCompanyComponent },
+          { path: 'register-driver', component: RegisterDriverComponent }
           // { path: 'maintenance', component: MaintenanceComponent },
       ]
   },

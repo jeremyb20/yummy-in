@@ -1,0 +1,82 @@
+<div class="container-fluid homeBody px-4 px-md-4 py-5 mx-auto">
+    <div class="row d-flex justify-content-center align">
+        <div class="card border-0 rounded-0 mb-5">
+            <h1 class="mb-2">Registrarse</h1> <small class="mb-3">Complete los espacios siguientes</small>
+            <label class="font-weight-bold mb-0">Nombre</label> <input type="text" name="name" class="mb-4" placeholder="John Harry">
+            <label class="font-weight-bold mb-0">Nombre Usurario </label> <input type="text" name="username" class="mb-4" placeholder="JohnyHarry">
+            <label class="font-weight-bold mb-0">Correo</label> <input type="text" name="email" class="mb-4" placeholder="abc@xyz.com">
+            <label class="font-weight-bold mb-0">Teléfono</label> <input type="number" name="phone" class="mb-4" placeholder="(506) 1234567890">
+            <label class="font-weight-bold mb-0">Placa de la moto</label> <input type="text" name="phone" class="mb-4" placeholder="(506) 1234567890">
+            <label class="font-weight-bold mb-0">Fecha de nacimiento</label>
+            <div class='input-group date' id='datetimepicker1'>
+                <input type="date" class="form-control" />
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+            <label class="font-weight-bold mb-0">Contraseña</label> <input type="password" name="password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" minlength="8"> <small class="text-muted">Minimo is 8 characteres</small>
+            <label class="font-weight-bold mb-0">Direccion Domicilio</label> <textarea name="address" class="mb-4"></textarea>
+            <div class="custom-control custom-checkbox custom-control-inline mt-4"> <input id="chk1" type="checkbox" name="chk" class="custom-control-input" checked> <label for="chk1" class="custom-control-label text-sm">Estoy de acuerdo a los términos y servicos, términos de pagos y política de privacidad.</label> </div>
+            <div class="row px-3 mt-5 mx-auto justify-content-center"> <button type="submit" class="btn btn-yellow px-3 mr-3">Registrar</button> </div>
+        </div>
+    </div>
+</div>
+
+<!-- 
+    <div class="row px-3 mt-4 mb-3"> carro o moto 
+                <div class="custom-control custom-radio custom-control-inline"> <input id="customRadioInline1" type="radio" name="customRadioInline1" checked class="custom-control-input"> <label for="customRadioInline1" class="custom-control-label text-sm">Carro</label> </div>
+                <div class="custom-control custom-radio custom-control-inline"> <input id="customRadioInline2" type="radio" name="customRadioInline1" class="custom-control-input"> <label for="customRadioInline2" class="custom-control-label text-sm">Moto</label> </div>
+    </div> 
+ -->
+
+
+ <!-- <div class="row no-gutters justify-content-center fadeInDown">
+    <div class="col-md-6">
+      <div class="card">
+        <header class="card-header fadeIn first">
+          <a [routerLink]="['/login']" class="nav-link float-right btn btn-outline-primary mt-1">Log in</a>
+          <h4 class="card-title mt-2">Sign up</h4>
+        </header>
+        <article class="card-body">
+          <form (submit)="onRegisterSubmit()" enctype="multipart/form-data">
+            <div class="form-row">
+              <div class="col form-group">
+                <label>Name </label>
+                <input type="text" [(ngModel)]="name" name="name" class="form-control fadeIn second" id="name" placeholder="Enter Name">
+              </div> 
+              <div class="col form-group">
+                <label for="username">Username</label>
+                <input type="text" [(ngModel)]="username" name="username" class="form-control fadeIn second" id="username"
+                  placeholder="Enter Username">
+              </div> 
+            </div> 
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" [(ngModel)]="email" name="email" class="form-control fadeIn third" id="email"
+                aria-describedby="emailHelp" placeholder="Enter Email">
+              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div> 
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" [(ngModel)]="password" name="password" class="form-control fadeIn third" id="password"
+                placeholder=" Enter Password">
+            </div> 
+            <div class="form-group text-center">
+                <input #photoinput type="file" name="image" accept="image/*" class="d-none"
+                  (change)="processFile($event)">
+                <img [src]="photoSelected || '../../../assets/upload.png'" alt="" style="width: 200px; height: 200px;"
+                  class="img-fluid" (click)="photoinput.click()" srcset="">
+            </div> 
+  
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary btn-block"> Register </button>
+            </div> 
+            <small class="text-muted">By clicking the 'Sign Up' button, you confirm that you accept our <br> Terms of use
+              and Privacy Policy.</small>
+          </form>
+        </article>
+        <div class="border-top card-body text-center">Have an account? <a [routerLink]="['/login']">Log In</a></div>
+      </div> 
+    </div>
+  
+  </div> -->

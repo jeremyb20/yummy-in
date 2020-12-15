@@ -1,0 +1,108 @@
+<div class="registerCompany">
+    <div class="card">
+        <div class="card-body border-0 rounded-0 mb-5">
+            <h4 class="mb-2">Registrarse</h4> <small class="mb-3">Complete los espacios siguientes</small>
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                <div class="form-row">
+                    <div class="form-group col-6">
+                        <label class="font-weight-bold ">Nombre de la empresa</label>
+                        <input type="text" formControlName="companyName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.companyName.errors }" />
+                        <div *ngIf="submitted && f.companyName.errors" class="invalid-feedback">
+                            <div *ngIf="f.companyName.errors.required">Nombre de la empresa es requerido</div>
+                        </div>
+                    </div>
+                    <div class="form-group col-6">
+                        <label class="font-weight-bold ">Tipo de negocio</label>
+                        <ng-select [searchable]="false" formControlName="bussinesSelected" [clearable]="false" [ngClass]="{ 'is-invalid': submitted && f.bussinesSelected.errors }" class="rounded-0" id="inputGroupSelect01">
+                            <ng-option *ngFor="let item of bussinesType" [value]="item.Id">{{item.name}}</ng-option>
+                        </ng-select>
+                        <div *ngIf="submitted && f.bussinesSelected.errors" class="invalid-feedback">
+                            <div *ngIf="f.bussinesSelected.errors.required">Tipo de negocio es requerido</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-6">
+                        <label class="font-weight-bold ">Teléfono</label>
+                        <input formControlName="phone"  pattern="\d*" class="form-control" placeholder="(+506)" maxlength="8" [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" />
+                        <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+                            <div *ngIf="f.phone.errors.required">Telefono es requerido</div>
+                            <div *ngIf="f.phone.errors.minlength">Telefono debe ser al menos 8 digitos</div>
+                            <div *ngIf="f.phone.errors.pattern">Solo se permiten numeros</div>
+                        </div>
+                    </div>
+                    <div class="form-group col-6">
+                        <label class="font-weight-bold ">Email</label>
+                        <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                            <div *ngIf="f.email.errors.required">Email is required</div>
+                            <div *ngIf="f.email.errors.email">Email debe tener un correo valido</div>
+                        </div>
+                    </div>
+                </div>
+               
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label class="font-weight-bold ">Contraseña</label>
+                        <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                            <div *ngIf="f.password.errors.required">Contraseña es requerido</div>
+                            <div *ngIf="f.password.errors.minlength">Contraseña debe ser al menos 6 caracteres</div>
+                        </div>
+                    </div>
+                    <div class="form-group col">
+                        <label class="font-weight-bold ">Confirmar Contraseña</label>
+                        <input type="password" formControlName="confirmPassword" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" />
+                        <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+                            <div *ngIf="f.confirmPassword.errors.required">Confirmar contraseña es requerido</div>
+                            <div *ngIf="f.confirmPassword.errors.mustMatch">Contraseña no son iguales</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group text-center col">
+                        <label class="font-weight-bold ">Mostrar ubicacion exacta de la empresa</label>
+                        <div class="map" style="width:100%;height:35vh" #map>
+                            <agm-map [style.height.px]="map.offsetHeight" [latitude]="lat" [longitude]="lng" [zoom]="zoom" [scrollwheel]="true" [zoomControl]="true" (mapClick)="mapClicked($event)" [disableDefaultUI]="false">
+                          
+                              <agm-marker style="border-radius: 50%;" *ngFor="let m of markers; let i = index" [latitude]="m.lat" [longitude]="m.lng" [label]="m.label" [agmFitBounds]="true" [iconUrl]="{url:m.photo, scaledSize:{height:45, width:40, radius:5}}">
+                                  
+                                <agm-info-window  #infowindow [isOpen]="showInfo" >
+                                  <h6>Es tu ubicación actual?</h6>
+                                  <p>Si no es la Ubicacion puedes cambiarla haciendo click</p>
+                                  <button class="btn btn-info btn-sm mr-1" (click)="changePosition(m)" >Cambiar</button>
+                                  <button class="btn btn-success btn-sm" (click)="savePosition()" >Guardar</button>
+                                </agm-info-window>
+                              </agm-marker>
+                            </agm-map>
+                          </div>
+                          <div class="container">
+                            <div class="text-center well">
+                              <div class="pt-2 pr-0 pl-0"> <button class="btn btn-info btn-sm" (click)="setCurrentPosition()">Mi Ubicación Actual</button></div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group text-center">
+                    <label class="font-weight-bold ">Foto:</label>
+                    <input #photoinput type="file" name="image" accept="image/*" class="d-none"
+                      (change)="processFile($event)">
+                    <img [src]="photoSelected || '../../../assets/upload.png'" alt="" style="width: 100px; height: 100px;"
+                      class="img-fluid" (click)="photoinput.click()" srcset="">
+                  </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" formControlName="acceptTerms" id="acceptTerms" class="form-check-input" [ngClass]="{ 'is-invalid': submitted && f.acceptTerms.errors }" />
+                    <label for="acceptTerms" class="font-weight-bold form-check-label">Accepto Terminos & Condiciones</label>
+                    <div *ngIf="submitted && f.acceptTerms.errors" class="invalid-feedback">Acceptar Ts & Cs Es requerido</div>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-block btn-yellow btn-sm">Registrarse</button>
+                    <button [routerLink]="['/login-company']" class="btn btn-block btn-inverse btn-sm">Iniciar Sesión</button>
+                </div>
+                <div *ngIf="hideMsg" class="row no-gutters alert alert-warning error-message text-center mt-2" role="alert">
+                    <i class="fas fa-times-circle mt-1 mr-3"></i> <strong class="text-center">{{ ShowMsg }}</strong>
+                  </div>
+            </form>
+        </div>
+    </div>
+</div>
