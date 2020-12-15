@@ -92,7 +92,7 @@ export function tokenGetter() {
       },
     }),
     AgmCoreModule.forRoot({
-      apiKey: '',
+      apiKey: 'AIzaSyC6XvMo8SNV30Pylr97UwPP6EPi1LGn_9A',
       libraries: ['places','geometry','weather']
     }),
     AgmDirectionModule
