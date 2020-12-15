@@ -35,15 +35,20 @@ const app = express();
 const users = require('./back-end/routes/users');
 const companys = require('./back-end/routes/companys');
 
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
+
+app.use(cookieParser());
 
 require('./back-end/config/passport')(passport);
 app.use('/users', users);
 app.use('/company', companys);
 
-app.use(cookieParser());
-
 app.use(express.static(__dirname + '/dist/yummy-in'));
 app.get('/*', function(re,res){
     res.sendFile(path.join(__dirname+'/dist/yummy-in/index.html'))
 })
-app.listen(process.env.PORT || 8080);
+app.listen(port, function() {
+  console.log("App is running on port " + port);
+});
