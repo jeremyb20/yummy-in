@@ -114,7 +114,7 @@ router.post('/authenticate', (req, res, next) => {
   });
 });
 
-router.post('/register/newMenu', async(req, res, next) => {
+router.post('/register/newMenu',async function(req, res, next)  {
   const obj = JSON.parse(JSON.stringify(req.body));
   
   const result = await cloudinary.uploader.upload(req.file != undefined? req.file.path: obj.image);
@@ -125,7 +125,7 @@ router.post('/register/newMenu', async(req, res, next) => {
     idCompany: obj.idCompany,
     photo: result.url == undefined? obj.image : result.url
   };
-  Company.findOneAndUpdate({ _id: req.body.idCompany }, { $push: { newMenu: newMenu  } },async(err, menu, done) => {
+  Company.findOneAndUpdate({ _id: req.body.idCompany }, { $push: { newMenu: newMenu  } },async (err, menu, done) => {
     try {
       res.json({ success: true, msg: 'Nuevo menu registrado exitosamente..!' });
       } catch (err) {

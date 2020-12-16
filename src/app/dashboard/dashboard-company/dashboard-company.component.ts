@@ -39,6 +39,8 @@ export class DashboardCompanyComponent implements OnInit, OnDestroy {
   loading: boolean = false;
   hideMsg: boolean = false; 
   ShowMsg: string;
+  showMenuSelected: boolean = false;
+  hideItemSeleccion: boolean = true;
 
 
   @ViewChild("search")
@@ -71,6 +73,9 @@ export class DashboardCompanyComponent implements OnInit, OnDestroy {
 
       this.mediaSubscription = this.media.subscribeMedia().subscribe(media => {
         this.Media = media;
+        if(this.Media.IsLandscape){
+          this.showMenuSelected = true;
+        }
       });
 
       this.getMyListMenu()
@@ -101,7 +106,18 @@ export class DashboardCompanyComponent implements OnInit, OnDestroy {
   }
 
   showPanelMenu(item:any) {
+    if(this.Media.IsMobile){
+      this.showMenuSelected = true;
+      this.hideItemSeleccion = false;
+    }
     this.showPanelMenuItem = item;
+  }
+
+  goBack() {
+    if(this.Media.IsMobile){
+      this.showMenuSelected = false;
+      this.hideItemSeleccion = true;
+    }
   }
 
   editMenuSelected(item:any) {
