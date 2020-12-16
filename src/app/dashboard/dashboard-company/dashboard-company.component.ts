@@ -93,6 +93,10 @@ export class DashboardCompanyComponent implements OnInit, OnDestroy {
 
   getMyListMenu(){
     this.showEditMenu = false;
+    if(this.Media.IsMobile){
+      this.showMenuSelected = true;
+      this.hideItemSeleccion = false;
+    }
     this.companyService.getMyMenuList(this.user.id).subscribe(data => {
       if(data.length>0) {
         this.myfoodMenu = data;
