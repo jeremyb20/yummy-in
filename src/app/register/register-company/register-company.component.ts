@@ -48,7 +48,7 @@ export class RegisterCompanyComponent implements OnInit {
   ngOnInit() {
       this.registerForm = this.formBuilder.group({
           companyName: ['', Validators.required],
-          bussinesSelected: ['Tipo de compania', Validators.required],
+          bussinesSelected: ['Tipo de compañia', Validators.required],
           phone: ['', [Validators.minLength(8),Validators.required,Validators.pattern(/\d/)]],
           email: ['', [Validators.required, Validators.email]],
           password: ['', [Validators.required, Validators.minLength(6)]],
@@ -109,6 +109,25 @@ export class RegisterCompanyComponent implements OnInit {
   onSubmit() {
       this.submitted = true;
       // stop here if form is invalid
+      if(this.f.bussinesSelected.value  === 'Tipo de compañia'){
+        Swal.fire({
+          title: 'Error de registro' ,
+          html: "Seleccione el tipo de compañia",
+          showCancelButton: false,
+          allowEscapeKey: false,
+          confirmButtonText: 'OK',
+          allowOutsideClick: false,
+          buttonsStyling: false,
+          reverseButtons: true,
+          position: 'top',
+          padding: 0,
+          customClass: { confirmButton: 'col-auto btn btn-info m-3' }
+        })
+        .then((result) => {
+              
+        });
+        return;
+      }
       if (this.registerForm.invalid) {
           return;
       }
