@@ -20,6 +20,7 @@ export class RegisterCompanyComponent implements OnInit {
   @Input() phone;
   proper = false;
   public searchControl: FormControl;
+  loading: boolean = false;
   registerForm: FormGroup;
   submitted = false;
   zoom: number = 4;
@@ -47,7 +48,7 @@ export class RegisterCompanyComponent implements OnInit {
   ngOnInit() {
       this.registerForm = this.formBuilder.group({
           companyName: ['', Validators.required],
-          bussinesSelected: ['', Validators.required],
+          bussinesSelected: ['Tipo de compania', Validators.required],
           phone: ['', [Validators.minLength(8),Validators.required,Validators.pattern(/\d/)]],
           email: ['', [Validators.required, Validators.email]],
           password: ['', [Validators.required, Validators.minLength(6)]],
@@ -111,6 +112,7 @@ export class RegisterCompanyComponent implements OnInit {
       if (this.registerForm.invalid) {
           return;
       }
+      this.loading = true;
       var newCompany = {
         companyName: this.f.companyName.value,
         phone: this.f.phone.value,
@@ -125,6 +127,7 @@ export class RegisterCompanyComponent implements OnInit {
 
       this.companyService.registerCompany(newCompany,this.file).subscribe(data => {
         if(data.success) {
+          this.loading = false;
           Swal.fire({
             title: 'Registro de la empresa ' + newCompany.companyName+'' ,
             html: "Su registro ha sido authenticado correctamente. Haz click en ok para iniciar sesion",
@@ -146,12 +149,14 @@ export class RegisterCompanyComponent implements OnInit {
           });
         } else {
           this.hideMsg = true;
+          this.loading = false;
           this.ShowMsg = data.msg;
           setTimeout(() => { this.hideMsg = false }, this.timeSeconds);
         }
       },
       error => {
         this.hideMsg = true;
+        this.loading = false;
         this.ShowMsg = "Ocurrio un error favor contactar a soporte o al administrador del sitio";
         setTimeout(() => { this.hideMsg = false }, this.timeSeconds);
       });

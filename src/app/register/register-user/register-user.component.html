@@ -1,8 +1,8 @@
 <div id="register-user">
   <div class="container-fluid">
     <div class="pt-4">
-       <div class="card bg-light">
-        <article class="card-body mx-auto pt-1" style="max-width: 400px;">
+       <div class="card bg-light" style="max-width: 400px;">
+        <article class="card-body mx-auto pt-1">
           <form [formGroup]="registerForm" (ngSubmit)="onRegisterSubmit()">
             <h4>Crear cuenta</h4>
           <p>
@@ -26,17 +26,7 @@
               <div *ngIf="submitted && f.username.errors" class="invalid-feedback" [ngClass]="{ 'remove-margin text-center': submitted && f.username.errors }">
                   <div *ngIf="f.username.errors.required">Usuario es requerido</div>
               </div>
-            </div> 
-            <div class="form-group input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
-              </div>
-              <input type="text" formControlName="email" placeholder="Correo electronico" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
-              <div *ngIf="submitted && f.email.errors" class="invalid-feedback" [ngClass]="{ 'remove-margin text-center': submitted && f.email.errors }">
-                  <div *ngIf="f.email.errors.required">Email es requerido</div>
-                  <div *ngIf="f.email.errors.email">Email debe tener un correo valido</div>
-              </div>
-            </div> 
+            </div>  
             <div class="form-group input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
@@ -51,6 +41,16 @@
                   <div *ngIf="f.phone.errors.pattern">Solo se permiten numeros</div>
               </div>
             </div>  
+            <div class="form-group input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+              </div>
+              <input type="text" formControlName="email" placeholder="Correo electronico" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+              <div *ngIf="submitted && f.email.errors" class="invalid-feedback" [ngClass]="{ 'remove-margin text-center': submitted && f.email.errors }">
+                  <div *ngIf="f.email.errors.required">Email es requerido</div>
+                  <div *ngIf="f.email.errors.email">Email debe tener un correo valido</div>
+              </div>
+            </div>
             <div class="form-group input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
