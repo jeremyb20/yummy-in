@@ -76,6 +76,9 @@ export class DashboardCompanyComponent implements OnInit, OnDestroy {
         if(this.Media.IsLandscape){
           this.showMenuSelected = true;
         }
+        if(this.Media.IsMobile){
+          this.showMenuSelected = false;
+        }
       });
 
       this.getMyListMenu()
