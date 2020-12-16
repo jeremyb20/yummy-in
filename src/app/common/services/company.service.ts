@@ -58,9 +58,9 @@ export class CompanyService {
     fd.append('image', photo);
 
     if(this.isDev) {
-      return this.httpClient.post<any>('http://localhost:8080/company/register/newMenu', fd,{ headers: this.headers});
+      return this.httpClient.post<any>('http://localhost:8080/company/register/newMenu', fd);
     }else{
-      return this.httpClient.post<any>('company/register/newMenu', fd,{ headers: this.headers});
+      return this.httpClient.post<any>('company/register/newMenu', fd);
     }
   }
 
