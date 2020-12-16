@@ -109,6 +109,9 @@ export class RegisterCompanyComponent implements OnInit {
   onSubmit() {
       this.submitted = true;
       // stop here if form is invalid
+      if (this.registerForm.invalid) {
+          return;
+      }
       if(this.f.bussinesSelected.value  === 'Tipo de compañia'){
         Swal.fire({
           title: 'Error de registro' ,
@@ -128,9 +131,7 @@ export class RegisterCompanyComponent implements OnInit {
         });
         return;
       }
-      if (this.registerForm.invalid) {
-          return;
-      }
+      
       this.loading = true;
       var newCompany = {
         companyName: this.f.companyName.value,
