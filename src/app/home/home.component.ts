@@ -36,6 +36,7 @@ export class HomeComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     }
+    this.loading = true;
     const user = {
       email: this.f.email.value,
       password: this.f.password.value
@@ -43,6 +44,7 @@ export class HomeComponent implements OnInit {
 
     this.authService.authenticateUser(user).subscribe(data => {
         if(data.success) {
+        this.loading = false;
           switch (data.user.userState) {
             case 0:
               this.router.navigate(['/admin']);
@@ -64,6 +66,7 @@ export class HomeComponent implements OnInit {
         } else {
           this.hideMsg = true;
           this.ShowMsg = data.msg;
+          this.loading = false;
           setTimeout(() => { this.hideMsg = false }, this.timeSeconds);
         }
     });

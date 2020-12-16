@@ -30,7 +30,19 @@
                   </div>
                   <a [routerLink]="['/forgot-user']" class="text-sm ml-auto text-dim">Olvidó contraseña?</a>
                   <div class="row mt-2">
-                    <div class="col-6"> <button type="submit" class="btn btn-block btn-inverse btn-sm">Iniciar Sesión</button> </div>
+                    <div class="col-6">
+                      <button type="submit" class="btn btn-block btn-inverse btn-sm">
+                        <svg *ngIf="loading" class="loader" viewBox="0 0 24 24">
+                          <circle class="loader__value" cx="12" cy="12" r="10" />
+                          <circle class="loader__value" cx="12" cy="12" r="10" />
+                          <circle class="loader__value" cx="12" cy="12" r="10" />
+                          <circle class="loader__value" cx="12" cy="12" r="10" />
+                          <circle class="loader__value" cx="12" cy="12" r="10" />
+                          <circle class="loader__value" cx="12" cy="12" r="10" />
+                        </svg>
+                        Iniciar Sesión
+                      </button>
+                    </div>  
                     <div class="col-6"> <button [routerLink]="['/register-user']" class="btn btn-block btn-yellow btn-sm">Registrarse</button> </div>
                   </div>
                   <div *ngIf="hideMsg" class="row no-gutters alert alert-warning error-message text-center mt-2" role="alert">

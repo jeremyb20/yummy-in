@@ -37,6 +37,7 @@ export class LoginCompanyComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     }
+    this.loading = true;
     const company = {
       email: this.f.email.value,
       password: this.f.password.value
@@ -44,6 +45,7 @@ export class LoginCompanyComponent implements OnInit {
 
     this.companyService.authenticateCompany(company).subscribe(data => {
         if(data.success) {
+          this.loading = false;
           switch (data.company.userState) {
             case 0:
               this.router.navigate(['/admin']);
@@ -65,6 +67,7 @@ export class LoginCompanyComponent implements OnInit {
         } else {
           this.hideMsg = true;
           this.ShowMsg = data.msg;
+          this.loading = false;
           setTimeout(() => { this.hideMsg = false }, this.timeSeconds);
         }
     });
