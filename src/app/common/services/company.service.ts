@@ -99,7 +99,7 @@ export class CompanyService {
     if(this.isDev) {
       return this.httpClient.put<any>('http://localhost:8080/company/delete/deleteMenuItemList',fd);
     }else{
-      return this.httpClient.put<any>('company/delete/deleteMenuItemLis',fd);
+      return this.httpClient.put<any>('company/delete/deleteMenuItemList',fd);
     }
   }
 
