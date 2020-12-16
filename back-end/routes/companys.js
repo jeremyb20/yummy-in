@@ -114,51 +114,42 @@ router.post('/authenticate', (req, res, next) => {
   });
 });
 
-router.post('/register/newMenu',async function(req, res, next)  {
-  const obj = JSON.parse(JSON.stringify(req.body));
+// router.post('/register/newMenu',async function(req, res, next)  {
+//   const obj = JSON.parse(JSON.stringify(req.body));
   
-  const result = await cloudinary.uploader.upload(req.file != undefined? req.file.path: obj.image);
-  let newMenu = {
-    foodName: obj.foodName,
-    description: obj.description,
-    cost: obj.cost,
-    idCompany: obj.idCompany,
-    photo: result.url == undefined? obj.image : result.url
-  };
-  Company.findOneAndUpdate({ _id: req.body.idCompany }, { $push: { newMenu: newMenu  } },function (err, menu, done) {
-      try {
-        res.json({ success: true, msg: 'Nuevo menu registrado exitosamente..!' });
-      } catch (err) {
-        res.json({success: false, msg: err});
-        next(err);
-      }
-    });
-});
-
-// router.post('/register/newMenu',  async (req, res, next) => {
-//   try {
-//     const obj = JSON.parse(JSON.stringify(req.body));
-//   //listing messages in users mailbox 
-//     const result = await cloudinary.uploader.upload(req.file != undefined? req.file.path: obj.image);
-//     let newMenu = {
-//       foodName: obj.foodName,
-//       description: obj.description,
-//       cost: obj.cost,
-//       idCompany: obj.idCompany,
-//       photo: result.url == undefined? obj.image : result.url
-//     };
-//     Company.findOneAndUpdate({ _id: req.body.idCompany }, { $push: { newMenu: newMenu  } },async (err, menu, done) => {
+//   const result = await cloudinary.uploader.upload(req.file != undefined? req.file.path: obj.image);
+//   let newMenu = {
+//     foodName: obj.foodName,
+//     description: obj.description,
+//     cost: obj.cost,
+//     idCompany: obj.idCompany,
+//     photo: result.url == undefined? obj.image : result.url
+//   };
+//   Company.findOneAndUpdate({ _id: req.body.idCompany }, { $push: { newMenu: newMenu  } },function (err, menu, done) {
 //       try {
 //         res.json({ success: true, msg: 'Nuevo menu registrado exitosamente..!' });
 //       } catch (err) {
-//         res.json({success: false, msg: 'err system'});
+//         res.json({success: false, msg: err});
 //         next(err);
 //       }
 //     });
-//   } catch (err) {
-//     next(err);
-//   }
-// })
+// });
+
+router.post('/register/newMenu',  async (req, res, next) => {
+    const obj = JSON.parse(JSON.stringify(req.body));
+  //listing messages in users mailbox 
+    const result = await cloudinary.uploader.upload(req.file != undefined? req.file.path: obj.image);
+    let newMenu = {
+      foodName: obj.foodName,
+      description: obj.description,
+      cost: obj.cost,
+      idCompany: obj.idCompany,
+      photo: result.url == undefined? obj.image : result.url
+    };
+    Company.findOneAndUpdate({ _id: req.body.idCompany }, { $push: { newMenu: newMenu  } })
+    .then(user => res.json({ success: true, msg: 'Nuevo menu registrado exitosamente..!' }))
+    .catch(err => res.json({success: false, msg: err}))
+})
 
 
 
