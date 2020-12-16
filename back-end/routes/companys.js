@@ -135,7 +135,7 @@ router.post('/authenticate', (req, res, next) => {
 //     });
 // });
 
-router.post("/register/newMenu",  async (req, res, next) => {
+router.post('/register/newMenu',  async (req, res, next) => {
   try {
     const obj = JSON.parse(JSON.stringify(req.body));
   //listing messages in users mailbox 
@@ -151,7 +151,7 @@ router.post("/register/newMenu",  async (req, res, next) => {
       try {
         res.json({ success: true, msg: 'Nuevo menu registrado exitosamente..!' });
       } catch (err) {
-        res.json({success: false, msg: err});
+        res.json({success: false, msg: 'err system'});
         next(err);
       }
     });
