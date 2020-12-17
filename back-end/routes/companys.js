@@ -190,7 +190,7 @@ router.post('/register/newMenu', async(req, res) => {
     idCompany: obj.idCompany,
     photo: result.url == undefined ? obj.image : result.url
   };
-  Company
+  await Company
   .findOneAndUpdate({ _id: req.body.idCompany }, { $push: { newMenu: newMenu  }},{new: true})
   .then(user => res.json({ success: true, msg: 'Se ha registrado correctamente..!' }))
   .catch(err => res.status(501).send("User- query promise was rejected. Handle according to specific case."));
