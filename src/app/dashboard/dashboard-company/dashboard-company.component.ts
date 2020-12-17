@@ -193,7 +193,7 @@ export class DashboardCompanyComponent implements OnInit, OnDestroy {
                 this.showMenuSelected = false;
                 this.hideItemSeleccion = true;
               }
-              this.getMyListMenu();
+              setTimeout(() => { this.getMyListMenu(); }, this.timeSeconds);
             } else {
               this._notificationSvc.warning('Hola '+this.user.companyName+'', data.msg, 6000);
             }
@@ -239,7 +239,7 @@ export class DashboardCompanyComponent implements OnInit, OnDestroy {
           this.showMenuSelected = false;
           this.hideItemSeleccion = true;
         }
-        this.getMyListMenu();
+        setTimeout(() => { this.getMyListMenu(); }, this.timeSeconds);
       } else {
         this.loading = false;
         $('#newMenuModal').modal('hide');
