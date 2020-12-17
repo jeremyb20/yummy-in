@@ -193,7 +193,7 @@ router.post('/register/newMenu', async(req, res) => {
   await Company
   .findOneAndUpdate({ _id: req.body.idCompany }, { $push: { newMenu: newMenu  }},{new: true})
   .then(user => res.json({ success: true, msg: 'Se ha registrado correctamente..!' }))
-  .catch(err => res.status(501).send("User- query promise was rejected. Handle according to specific case."));
+  .catch(err => console.log(err,"error"), res.json(501).send("User- query promise was rejected. Handle according to specific case."));
 });
 
 
