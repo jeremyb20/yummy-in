@@ -190,10 +190,13 @@ router.post('/register/newMenu', async(req, res) => {
     idCompany: obj.idCompany,
     photo: result.url == undefined ? obj.image : result.url
   };
-  await Company
-  .findOneAndUpdate({ _id: req.body.idCompany }, { $push: { newMenu: newMenu  }},{new: true})
-  .then(user => res.json({ success: true, msg: 'Se ha registrado correctamente..!' }))
-  .catch(err => console.log(err,"error"), res.json(501).send("User- query promise was rejected. Handle according to specific case."));
+  // await Company
+  // .findOneAndUpdate({ _id: req.body.idCompany }, { $push: { newMenu: newMenu  }},{new: true})
+  // .then(user => res.json({ success: true, msg: 'Se ha registrado correctamente..!' }))
+  // .catch(err => console.log(err,"error"), res.json(501).send("User- query promise was rejected. Handle according to specific case."));
+  Company.findOneAndUpdate({ _id: req.body.idCompany }, { $push: { newMenu: newMenu  }},{new: true}).then(function(data){
+    res.json({success:true,msg: 'Se ha registrado correctamente..!'});
+  });
 });
 
 
