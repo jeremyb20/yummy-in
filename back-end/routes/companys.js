@@ -152,33 +152,50 @@ router.post('/authenticate', (req, res, next) => {
 // })
 
 
-router.post('/register/newMenu', async(req, res, next) => {
+// router.post('/register/newMenu', async(req, res, next) => {
+//   const obj = JSON.parse(JSON.stringify(req.body));
+//     const result = await cloudinary.uploader.upload(req.file != undefined? req.file.path: obj.image);
+//     let newMenu = {
+//       foodName: obj.foodName,
+//       description: obj.description,
+//       cost: obj.cost,
+//       idCompany: obj.idCompany,
+//       photo: result.url == undefined? obj.image : result.url
+//     };
+//     Company.findOne({_id: req.body.idCompany }, (err, user) => {
+//     if (!user) {
+//       return res.json({success:false,msg: 'Usuario no encontrado'});
+//     }
+//      if(user != null) {
+//       user.newMenu.push(newMenu);
+//       user.save();
+//       try {
+//         res.json({ success: true, msg: 'Se ha registrado correctamente..!' });
+//       } catch (err) {
+//         res.json({ success: false, msg: err });
+//         next(err);
+//       }
+//      }
+//    });
+// });
+
+router.post('/register/newMenu', async(req, res) => {
   const obj = JSON.parse(JSON.stringify(req.body));
-  //listing messages in users mailbox 
-    const result = await cloudinary.uploader.upload(req.file != undefined? req.file.path: obj.image);
-    let newMenu = {
-      foodName: obj.foodName,
-      description: obj.description,
-      cost: obj.cost,
-      idCompany: obj.idCompany,
-      photo: result.url == undefined? obj.image : result.url
-    };
-    await Company.findOne({_id: req.body.idCompany }, (err, user) => {
-    if (!user) {
-      return res.json({success:false,msg: 'Usuario no encontrado'});
-    }
-     if(user != null) {
-      user.newMenu.push(newMenu);
-      user.save();
-      try {
-        res.json({ success: true, msg: 'Se ha registrado correctamente..!' });
-      } catch (err) {
-        res.json({ success: false, msg: err });
-        next(err);
-      }
-     }
-   });
+
+  const result = await cloudinary.uploader.upload(req.file != undefined ? req.file.path : obj.image);
+  let newMenu = {
+    foodName: obj.foodName,
+    description: obj.description,
+    cost: obj.cost,
+    idCompany: obj.idCompany,
+    photo: result.url == undefined ? obj.image : result.url
+  };
+  Company
+  .findOneAndUpdate({ _id: req.body.idCompany }, { $push: { newMenu: newMenu  }},{new: true})
+  .then(user => res.json({ success: true, msg: 'Se ha registrado correctamente..!' }))
+  .catch(err => res.status(501).send("User- query promise was rejected. Handle according to specific case."));
 });
+
 
 
 
