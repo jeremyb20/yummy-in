@@ -189,6 +189,10 @@ export class DashboardCompanyComponent implements OnInit, OnDestroy {
           this.companyService.deleteMenuItem(item).subscribe(data => {
             if(data.success) {
               this._notificationSvc.success('Hola '+this.user.companyName+'', data.msg, 6000);
+              if(this.Media.IsMobile){
+                this.showMenuSelected = false;
+                this.hideItemSeleccion = true;
+              }
               this.getMyListMenu();
             } else {
               this._notificationSvc.warning('Hola '+this.user.companyName+'', data.msg, 6000);
@@ -231,6 +235,10 @@ export class DashboardCompanyComponent implements OnInit, OnDestroy {
         this.loading = false;
         $('#newMenuModal').modal('hide');
         this._notificationSvc.success('Hola '+this.user.companyName+'', data.msg, 6000);
+        if(this.Media.IsMobile){
+          this.showMenuSelected = false;
+          this.hideItemSeleccion = true;
+        }
         this.getMyListMenu();
       } else {
         this.loading = false;
