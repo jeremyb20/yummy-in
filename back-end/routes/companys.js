@@ -163,7 +163,7 @@ router.post('/register/newMenu', async(req, res, next) => {
       idCompany: obj.idCompany,
       photo: result.url == undefined? obj.image : result.url
     };
-  Company.findOne({_id: req.body.idCompany }, (err, user) => {
+    await Company.findOne({_id: req.body.idCompany }, (err, user) => {
     if (!user) {
       return res.json({success:false,msg: 'Usuario no encontrado'});
     }
@@ -215,7 +215,7 @@ router.put('/update/updateMenuItemList', async(req, res, next) => {
     photo: result.url == undefined? obj.image : result.url
   };
 
-  Company.findOne({_id: req.body.idCompany }, (err, user) => {
+  await Company.findOne({_id: req.body.idCompany }, (err, user) => {
     if (!user) {
       return res.json({success:false,msg: 'Usuario no encontrado'});
     }

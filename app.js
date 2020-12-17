@@ -21,6 +21,9 @@ mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);
 mongoose.set('useUnifiedTopology', true);
 
+// Get Mongoose to use the global promise library
+mongoose.Promise = global.Promise;
+
 mongoose.connect(process.env.BD_URL, {
   useUnifiedTopology: true,
   useNewUrlParser: true
