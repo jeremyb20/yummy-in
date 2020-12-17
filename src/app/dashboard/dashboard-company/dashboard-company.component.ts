@@ -33,6 +33,7 @@ export class DashboardCompanyComponent implements OnInit, OnDestroy {
   myfoodMenu: NewMenuResponse[] = [];
   showPanelMenuItem:any;
   timeSeconds: number =  6000;
+  timeSecondsrestore: number = 1000;
   file : File;
   photoSelected: String | ArrayBuffer;
   showEditMenu: boolean = false;
@@ -193,7 +194,7 @@ export class DashboardCompanyComponent implements OnInit, OnDestroy {
                 this.showMenuSelected = false;
                 this.hideItemSeleccion = true;
               }
-              setTimeout(() => { this.getMyListMenu(); }, this.timeSeconds);
+              setTimeout(() => { this.getMyListMenu(); }, this.timeSecondsrestore);
             } else {
               this._notificationSvc.warning('Hola '+this.user.companyName+'', data.msg, 6000);
             }
@@ -239,7 +240,7 @@ export class DashboardCompanyComponent implements OnInit, OnDestroy {
           this.showMenuSelected = false;
           this.hideItemSeleccion = true;
         }
-        setTimeout(() => { this.getMyListMenu(); }, this.timeSeconds);
+        setTimeout(() => { this.getMyListMenu(); }, this.timeSecondsrestore);
       } else {
         this.loading = false;
         $('#newMenuModal').modal('hide');
