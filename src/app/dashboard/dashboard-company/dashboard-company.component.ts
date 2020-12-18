@@ -140,6 +140,7 @@ export class DashboardCompanyComponent implements OnInit, OnDestroy {
     if (this.newMenuForm.invalid) {
         return;
     }
+    this.loading = true;
     var updateItemMenu = {
       foodName: this.f.foodName.value,
       description: this.f.description.value,
@@ -153,6 +154,7 @@ export class DashboardCompanyComponent implements OnInit, OnDestroy {
         $('#newMenuModal').modal('hide');
         this._notificationSvc.success('Hola '+this.user.companyName+'', data.msg, 6000);
         this.showEditMenu = false;
+        this.loading = false;
         this.newMenuForm = this.formBuilder.group({
           foodName: ['', Validators.required],
           cost: ['', [Validators.minLength(3),Validators.required,Validators.pattern(/\d/)]],
@@ -165,6 +167,7 @@ export class DashboardCompanyComponent implements OnInit, OnDestroy {
       }
     },
     error => {
+      this.loading = false;
       $('#newMenuModal').modal('hide');
       this._notificationSvc.warning('Hola '+this.user.companyName+'', 'Ocurrio un error favor contactar a soporte o al administrador del sitio', 6000);
     });

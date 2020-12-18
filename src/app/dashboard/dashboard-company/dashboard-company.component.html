@@ -302,7 +302,19 @@
             </div>
             <div class="modal-footer text-center">
               <button type="button" (click)="close()" class="btn btn-secondary float-left mr-auto" data-dismiss="modal">Cancelar</button>
-              <button type="submit" class="btn btn-primary float-right"> <i class="fas fa-edit"></i>Actualizar</button>
+              <button type="submit" class="btn btn-primary float-right">
+                <i *ngIf="!loading" class="fas fa-edit"></i>
+                <svg *ngIf="loading" class="loader" viewBox="0 0 24 24">
+                    <circle class="loader__value" cx="12" cy="12" r="10" />
+                    <circle class="loader__value" cx="12" cy="12" r="10" />
+                    <circle class="loader__value" cx="12" cy="12" r="10" />
+                    <circle class="loader__value" cx="12" cy="12" r="10" />
+                    <circle class="loader__value" cx="12" cy="12" r="10" />
+                    <circle class="loader__value" cx="12" cy="12" r="10" />
+                  </svg>
+                  Actualizar
+            
+              </button>
             </div>
         </form>
       </div>
