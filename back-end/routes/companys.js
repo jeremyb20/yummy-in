@@ -37,7 +37,7 @@ router.post('/register/new-company', async(req, res, next) => {
     lng: obj.lng,
     userState: obj.userState,
     bussinesSelected:obj.bussinesSelected,
-    photo: result.url == undefined? obj.image : result.url
+    photo: result.secure_url == undefined ? obj.image : result.secure_url
   });
 
   Company.addCompany(newCompany,async(user, done) => {
@@ -123,7 +123,7 @@ router.post('/register/newMenu', async(req, res) => {
     description: obj.description,
     cost: obj.cost,
     idCompany: obj.idCompany,
-    photo: result.url == undefined ? obj.image : result.url
+    photo: result.secure_url == undefined ? obj.image : result.secure_url
   };
   Company.findOneAndUpdate({ _id: req.body.idCompany }, { $push: { newMenu: newMenu  }},{new: true}).then(function(data){
     res.json({success:true,msg: 'Se ha registrado correctamente..!'});
@@ -163,7 +163,7 @@ router.put('/update/updateMenuItemList', async(req, res, next) => {
     cost: obj.cost,
     _id: obj._id,
     idCompany: obj.idCompany,
-    photo: result.url == undefined? obj.image : result.url
+    photo: result.secure_url == undefined ? obj.image : result.secure_url
   };
 
   await Company.findOne({_id: req.body.idCompany }, (err, user) => {

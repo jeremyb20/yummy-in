@@ -1,5 +1,6 @@
 import { Component, ElementRef, NgZone, OnInit, ViewChild, OnDestroy, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { CalendarOptions } from '@fullcalendar/angular'; // useful for typechecking
 import { Subscription, from } from 'rxjs';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { MediaResponse, MediaService } from '../../common/services/media.service';
@@ -9,6 +10,9 @@ import { CompanyService } from 'src/app/common/services/company.service';
 import { NewMenuResponse } from './dashboard-company-response'
 import { NotificationService } from 'src/app/common/services/notification.service';
 import { Router } from '@angular/router';
+import esLocale from '@fullcalendar/core/locales/es';
+import timeGridPlugin from '@fullcalendar/timegrid';
+import dayGridPlugin from '@fullcalendar/daygrid';
 declare var $: any;
 declare const google: any; 
 
@@ -42,8 +46,44 @@ export class DashboardCompanyComponent implements OnInit, OnDestroy {
   ShowMsg: string;
   showMenuSelected: boolean = false;
   hideItemSeleccion: boolean = true;
+  events: any;
+  calendarOptions: CalendarOptions = {
+    plugins: [dayGridPlugin, timeGridPlugin],
+    initialView: 'dayGridMonth',
+    locale: esLocale,
+    headerToolbar: {
+      left: 'prev,next',
+      center: '',
+      right: 'dayGridMonth,timeGridWeek,timeGridDay'
+    },
+    buttonText: {
+      today: 'Hoy',
+      month: 'Mes',
+      week: 'Semana',
+      day: 'Dia',
+      list: 'Lista'
+    },
+    dateClick: this.handleDateClick.bind(this), // bind is important!
+    events: [
+      { title: 'event 1', date: '2020-12-23' },
+      { title: 'event 2', date: '2020-12-24' }
+    ],
+    validRange: {
+      start: new Date()
+    },
+    eventClick: function(info) {
+      alert('Event: ' + info.event.title);
+      alert('Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY);
+      alert('View: ' + info.view.type);
+  
+      // change the border color just for fun
+      info.el.style.borderColor = 'red';
+    }
+  };
 
-
+  handleDateClick(arg) {
+    alert('date click! ' + arg.dateStr)
+  }
   @ViewChild("search")
   public searchElementRef: ElementRef;
 
@@ -101,6 +141,12 @@ export class DashboardCompanyComponent implements OnInit, OnDestroy {
       if(data.length>0) {
         this.myfoodMenu = data;
         this.showPanelMenuItem = this.myfoodMenu.slice(-1).pop();
+        this.events = [
+          { title: 'event 3', date: '2020-12-25' },
+          { title: 'event 4', date: '2020-12-25' }
+        ]
+        this.calendarOptions.events = this.events;
+        console.log(this.calendarOptions.events)
       }
     },
     error => {

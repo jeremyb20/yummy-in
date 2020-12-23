@@ -35,7 +35,7 @@ router.post('/register', async(req, res, next) => {
     password: obj.password,
     userState: obj.userState,
     phone: obj.phone,
-    photo: result.url == undefined? obj.image : result.url
+    photo: result.secure_url == undefined ? obj.image : result.secure_url
   });
 
   User.addUser(newUser,async(err, user, done) => {
@@ -100,7 +100,7 @@ router.post('/authenticate', (req, res, next) => {
     User.comparePassword(password, user.password, (err, isMatch) => {
       if(err) throw err;
       if(isMatch) {
-        const token = jwt.sign({data: user}, config.secret, {
+        const token = jwt.sign({data: user}, process.env.SECRET, {
           expiresIn: 86400   // 1 week: 604800 1 day //60 one minute 
         });
         res.json({

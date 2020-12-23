@@ -10,6 +10,9 @@ import { JwtHelperService, JWT_OPTIONS, JwtModule  } from '@auth0/angular-jwt';
 import { SocialLoginModule } from 'angularx-social-login';
 import { SocialAuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider  } from 'angularx-social-login';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { FullCalendarModule } from '@fullcalendar/angular'; // the main connector. must go first
+import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin
+import interactionPlugin from '@fullcalendar/interaction'; // a plugin
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -46,6 +49,11 @@ import { AdminMasterComponent } from './admin-master/admin-master.component';
 export function tokenGetter() {
   return localStorage.getItem("id_token");
 }
+
+FullCalendarModule.registerPlugins([ // register FullCalendar plugins
+  dayGridPlugin,
+  interactionPlugin
+]);
 
 @NgModule({
   declarations: [
@@ -84,6 +92,7 @@ export function tokenGetter() {
     NgSelectModule,
     CommonModule,
     SocialLoginModule,
+    FullCalendarModule,
     NgIdleModule.forRoot(),
     JwtModule.forRoot({
       config: {
