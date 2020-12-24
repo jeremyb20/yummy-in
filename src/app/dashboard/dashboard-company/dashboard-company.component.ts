@@ -29,6 +29,7 @@ export class DashboardCompanyComponent implements OnInit, OnDestroy {
   private mediaSubscription: Subscription;
   @Input() cost;
   newMenuForm: FormGroup;
+  newEventForm: FormGroup;
   submitted = false;
   userLogged: any;
   user : any;
@@ -46,7 +47,14 @@ export class DashboardCompanyComponent implements OnInit, OnDestroy {
   ShowMsg: string;
   showMenuSelected: boolean = false;
   hideItemSeleccion: boolean = true;
+  isNewEvent: boolean = false;
   events: any;
+  form = this.formBuilder.group({
+    title: [null, Validators.required],
+    allDay: [null],
+    start: [],
+    end: []
+  })
   calendarOptions: CalendarOptions = {
     plugins: [dayGridPlugin, timeGridPlugin],
     initialView: 'dayGridMonth',
@@ -63,7 +71,7 @@ export class DashboardCompanyComponent implements OnInit, OnDestroy {
       day: 'Dia',
       list: 'Lista'
     },
-    dateClick: this.handleDateClick.bind(this), // bind is important!
+    dateClick: this.handleDateClick.bind(this,true), // bind is important!
     events: [
       { title: 'event 1', date: '2020-12-23' },
       { title: 'event 2', date: '2020-12-24' }
@@ -71,19 +79,8 @@ export class DashboardCompanyComponent implements OnInit, OnDestroy {
     validRange: {
       start: new Date()
     },
-    eventClick: function(info) {
-      alert('Event: ' + info.event.title);
-      alert('Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY);
-      alert('View: ' + info.view.type);
-  
-      // change the border color just for fun
-      info.el.style.borderColor = 'red';
-    }
+    eventClick: this.handleDateClick.bind(this, false)
   };
-
-  handleDateClick(arg) {
-    alert('date click! ' + arg.dateStr)
-  }
   @ViewChild("search")
   public searchElementRef: ElementRef;
 
@@ -126,12 +123,19 @@ export class DashboardCompanyComponent implements OnInit, OnDestroy {
   }
 
   get f() { return this.newMenuForm.controls; }
+  get g() { return this.newEventForm.controls; }
 
   ngOnInit() {
     this.newMenuForm = this.formBuilder.group({
       foodName: ['', Validators.required],
       cost: ['', [Validators.minLength(3),Validators.required,Validators.pattern(/\d/)]],
       description: ['', Validators.required],
+    });
+
+    this.newEventForm = this.formBuilder.group({
+      title: ['', Validators.required],
+      date: ['', [Validators.required]],
+      enddate: ['', Validators.required],
     });
   }
 
@@ -146,7 +150,6 @@ export class DashboardCompanyComponent implements OnInit, OnDestroy {
           { title: 'event 4', date: '2020-12-25' }
         ]
         this.calendarOptions.events = this.events;
-        console.log(this.calendarOptions.events)
       }
     },
     error => {
@@ -301,6 +304,47 @@ export class DashboardCompanyComponent implements OnInit, OnDestroy {
       this.loading = false;
       this._notificationSvc.warning('Hola '+this.user.companyName+'', 'Ocurrio un error favor contactar a soporte o al administrador del sitio', 6000);
     });
+  }
+
+  handleDateClick(isNew, arg) {
+    $(function(){
+      $('[type="date"]').prop('min', function(){
+          return new Date().toJSON().split('T')[0];
+      });
+    });
+    this.isNewEvent = isNew;
+    if(this.isNewEvent){
+      this.newEventForm = this.formBuilder.group({
+        title: ['', Validators.required],
+        date: [arg.dateStr, [Validators.required]],
+        enddate: ['', Validators.required],
+      });
+    }else{
+      var start = moment(arg.event._instance.range.start).format("YYYY-MM-DD");
+      var end = moment(arg.event._instance.range.end).format("YYYY-MM-DD");
+
+      this.newEventForm = this.formBuilder.group({
+        title: [arg.event._def.title, Validators.required],
+        date: [start, [Validators.required]],
+        enddate: [end, Validators.required],
+      });
+    }
+    $('#newCalendarEventModal').modal('show');
+  }
+
+  newEventCalendarSubmit() {
+    this.submitted = true;
+    // stop here if form is invalid
+    if (this.newEventForm.invalid) {
+        return;
+    }
+    this.loading = true;
+    var newEvent = {
+      title: this.g.title.value,
+      date: this.g.date.value,
+      enddate: this.g.enddate.value,
+      idCompany: this.user.id
+    } 
   }
 
   ngOnDestroy() {

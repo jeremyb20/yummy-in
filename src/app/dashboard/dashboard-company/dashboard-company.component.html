@@ -326,3 +326,109 @@
     </div>
   </div>
 </div>
+
+<div class="modal fade" id="newCalendarEventModal" tabindex="-1" role="dialog" aria-labelledby="newCalendarEventModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-dark text-white">
+        <h5 *ngIf="isNewEvent" class="modal-title" id="newCalendarEventModal">Nuevo Evento</h5>
+        <h5 *ngIf="!isNewEvent" class="modal-title" id="newCalendarEventModal">Editar Evento</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form *ngIf="isNewEvent" [formGroup]="newEventForm" (ngSubmit)="newEventCalendarSubmit()">
+          <div class="form-group input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+            </div>
+            <input type="text" formControlName="title" class="form-control" placeholder="Nombre completo" [ngClass]="{ 'is-invalid': submitted && g.title.errors }" />
+            <div *ngIf="submitted && g.title.errors" class="invalid-feedback" [ngClass]="{ 'remove-margin text-center': submitted && g.title.errors }">
+                <div *ngIf="g.title.errors.required">Nuevo titulo es requerido</div>
+            </div>
+          </div> 
+          <div class="form-group input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text"> <i class="fa fa-calendar"></i> </span>
+            </div>
+            <input type="date" id="datefield" formControlName="date" min="today" class="form-control" [ngClass]="{ 'is-invalid': submitted && g.date.errors }" />
+            <div *ngIf="submitted && g.date.errors" class="invalid-feedback" [ngClass]="{ 'remove-margin text-center': submitted && g.date.errors }">
+                <div *ngIf="g.date.errors.required">Fecha de Inicio es requerido</div>
+            </div>
+          </div> 
+          <div class="form-group input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text"> <i class="fa fa-calendar"></i> </span>
+            </div>
+            <input type="date" formControlName="enddate" class="form-control" [ngClass]="{ 'is-invalid': submitted && g.enddate.errors }" />
+            <div *ngIf="submitted && g.enddate.errors" class="invalid-feedback" [ngClass]="{ 'remove-margin text-center': submitted && g.enddate.errors }">
+                <div *ngIf="g.enddate.errors.required">Fecha de Final es requerido</div>
+            </div>
+          </div>  
+
+            <div class="modal-footer text-center">
+              <button type="button" class="btn btn-secondary float-left mr-auto" data-dismiss="modal">Cancelar</button>
+              <button type="submit" class="btn btn-primary float-right">
+                <i *ngIf="!loading" class="fas fa-plus-circle"></i>
+                <svg *ngIf="loading" class="loader" viewBox="0 0 24 24">
+                    <circle class="loader__value" cx="12" cy="12" r="10" />
+                    <circle class="loader__value" cx="12" cy="12" r="10" />
+                    <circle class="loader__value" cx="12" cy="12" r="10" />
+                    <circle class="loader__value" cx="12" cy="12" r="10" />
+                    <circle class="loader__value" cx="12" cy="12" r="10" />
+                    <circle class="loader__value" cx="12" cy="12" r="10" />
+                  </svg>
+                Agregar
+              </button>
+            </div>
+        </form>
+        <form *ngIf="!isNewEvent" [formGroup]="newEventForm" (ngSubmit)="newEventCalendarSubmit()">
+          <div class="form-group input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+            </div>
+            <input type="text" formControlName="title" class="form-control" placeholder="Nombre completo" [ngClass]="{ 'is-invalid': submitted && g.title.errors }" />
+            <div *ngIf="submitted && g.title.errors" class="invalid-feedback" [ngClass]="{ 'remove-margin text-center': submitted && g.title.errors }">
+                <div *ngIf="g.title.errors.required">Nuevo titulo es requerido</div>
+            </div>
+          </div> 
+          <div class="form-group input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text"> <i class="fa fa-calendar"></i> </span>
+            </div>
+            <input type="date" id="datefield" formControlName="date" min="today" class="form-control" [ngClass]="{ 'is-invalid': submitted && g.date.errors }" />
+            <div *ngIf="submitted && g.date.errors" class="invalid-feedback" [ngClass]="{ 'remove-margin text-center': submitted && g.date.errors }">
+                <div *ngIf="g.date.errors.required">Fecha de Inicio es requerido</div>
+            </div>
+          </div> 
+          <div class="form-group input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text"> <i class="fa fa-calendar"></i> </span>
+            </div>
+            <input type="date" formControlName="enddate" class="form-control" [ngClass]="{ 'is-invalid': submitted && g.enddate.errors }" />
+            <div *ngIf="submitted && g.enddate.errors" class="invalid-feedback" [ngClass]="{ 'remove-margin text-center': submitted && g.enddate.errors }">
+                <div *ngIf="g.enddate.errors.required">Fecha de Final es requerido</div>
+            </div>
+          </div>  
+
+            <div class="modal-footer text-center">
+              <button type="button" class="btn btn-secondary float-left mr-auto" data-dismiss="modal">Cancelar</button>
+              <button type="submit" class="btn btn-primary float-right">
+                <i *ngIf="!loading" class="fas fa-edit"></i>
+                <svg *ngIf="loading" class="loader" viewBox="0 0 24 24">
+                    <circle class="loader__value" cx="12" cy="12" r="10" />
+                    <circle class="loader__value" cx="12" cy="12" r="10" />
+                    <circle class="loader__value" cx="12" cy="12" r="10" />
+                    <circle class="loader__value" cx="12" cy="12" r="10" />
+                    <circle class="loader__value" cx="12" cy="12" r="10" />
+                    <circle class="loader__value" cx="12" cy="12" r="10" />
+                  </svg>
+                Actualizar
+              </button>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
