@@ -45,6 +45,7 @@ import { ProfileDriverComponent } from './profile/profile-driver/profile-driver.
 import { ProfileCompanyComponent } from './profile/profile-company/profile-company.component';
 import { ProfileUserComponent } from './profile/profile-user/profile-user.component';
 import { AdminMasterComponent } from './admin-master/admin-master.component';
+import { MapComponent } from './map/map.component';
 
 export function tokenGetter() {
   return localStorage.getItem("id_token");
@@ -81,7 +82,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     ProfileDriverComponent,
     ProfileCompanyComponent,
     ProfileUserComponent,
-    AdminMasterComponent
+    AdminMasterComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,
