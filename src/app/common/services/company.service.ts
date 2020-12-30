@@ -122,6 +122,15 @@ export class CompanyService {
     }
   }
 
+  getRestaurantMenuList():Observable<any> {
+    this.loadToken();
+    if (this.isDev) {
+      return this.httpClient.get<any>('http://localhost:8080/company/getRestaurantMenuList/');
+    } else {
+      return this.httpClient.get<any>('company/getRestaurantMenuList/');
+    }
+  }
+
 //   getUsers() {
 //     let headers = new Headers();
 //     this.loadToken();
