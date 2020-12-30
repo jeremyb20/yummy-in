@@ -154,6 +154,29 @@ router.get('/getAllMenuList/:id', function(req, res){
   });
 });
 
+router.get('/getRestaurantMenuList/', function(req, res){
+  Company.find({}, function(err, company){
+    const obj = JSON.parse(JSON.stringify(company));
+    if(err){
+      res.send('Algo ocurrio contacta con el administrador del sitio');
+      next();
+    }else{
+      const list = [];
+      obj.forEach(element => {
+        if(element.newMenu.length>0){
+          var objec ={
+            newMenu: element.newMenu.slice(0,6),
+            companyName: element.companyName
+          }
+            list.push(objec)
+        }
+      })
+      res.json(list);
+    }
+    
+  });
+});
+
 router.put('/update/updateMenuItemList', async(req, res, next) => {
   const obj = JSON.parse(JSON.stringify(req.body));
   const result = await cloudinary.uploader.upload(req.file != undefined? req.file.path: obj.image);

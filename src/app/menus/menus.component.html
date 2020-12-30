@@ -1,0 +1,27 @@
+<div class="menu-component container">
+    <button class="btn btn-primary float-left mb-2 mt-3 ml-2 " type="button" (click)="goBack()"><i class="fas fa-arrow-left"></i> Volver </button>
+    <h3 class="mt-3 pb-3 mb-4 text-center border-bottom ">
+        Restaurantes a tu alcance
+    </h3>
+    <div class="row" *ngFor="let user of restaurantMenu">
+        <h4 class="card-title text-center col-12">Restaurate: {{ user.companyName }}</h4>
+        <div *ngFor="let obj of user.newMenu" class="col-sm-6 col-md-4 col-lg-3 mt-4">
+            <div class="card">
+                <img class="card-img-top" src="{{obj.photo}}">
+                <div class="card-block">
+                    <h4 class="card-title">{{obj.foodName}}</h4>
+                    <div class="meta">
+                        <a href="#">Descripcion</a>
+                    </div>
+                    <div class="card-text">
+                        {{obj.description}}
+                    </div>
+                    <span class="float-left">Costo: {{obj.cost | currency:"₡"}}</span>
+                </div>
+                <div class="card-footer">
+                    <a href="#" class="btn btn-yellow btn-sm btn-block">Button</a>
+                </div>
+            </div>
+        </div>
+    </div>    
+</div>

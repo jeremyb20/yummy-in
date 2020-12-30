@@ -257,9 +257,9 @@
          <div class="card">
             <img class="card-img-top" src="https://res.cloudinary.com/ensamble/image/upload/v1609260716/conductor_wcnloo.jpg" alt="Card image cap">
             <div class="card-body">
-               <h5 class="card-title border-bottom pb-3">Yummy Viaje <a href="#" class="float-right d-inline-flex share"><i class="fas fa-share-alt text-primary"></i></a></h5>
+               <h5 class="card-title border-bottom pb-3">Yummy Viaje</h5>
                <p class="card-text">Pedí tu viaje a travez de nuestra plataforma con nuestros conductores altamente calificados.</p>
-               <button type="submit" [routerLink]="['/map']" class="btn btn-yellow btn-block">Solicitar Viaje</button>
+               <button type="submit" [routerLink]="['/dashboard-user-map']" class="btn btn-yellow btn-block">Solicitar Viaje</button>
             </div>
          </div>
       </div>
@@ -267,9 +267,9 @@
          <div class="card">
             <img class="card-img-top" src="https://res.cloudinary.com/ensamble/image/upload/v1609260716/restaurante_ex5vye.jpg" alt="Card image cap">
             <div class="card-body">
-               <h5 class="card-title border-bottom pb-3">Yummy Restaurante <a href="#" class="float-right btn btn-sm btn-info d-inline-flex share"><i class="fas fa-share-alt"></i></a></h5>
+               <h5 class="card-title border-bottom pb-3">Yummy Restaurante </h5>
                <p class="card-text">Pedí comida de tus restaurantes favoritos o cercanos en tiempo real, también podés agendar tu pedido</p>
-               <button type="submit" class="btn btn-yellow btn-block">Ver Restaurantes</button>
+               <button type="submit" [routerLink]="['/dashboard-user-menus']" class="btn btn-yellow btn-block">Ver Restaurantes</button>
             </div>
          </div>
       </div>
@@ -277,7 +277,7 @@
          <div class="card bg-light">
             <img class="card-img-top" src="https://res.cloudinary.com/ensamble/image/upload/v1609260716/articulos_im6x1j.jpg" alt="Card image cap">
             <div class="card-body">
-               <h5 class="card-title border-bottom pb-3">Yummy Articulos <a href="#" class="float-right btn btn-sm btn-info d-inline-flex share"><i class="fas fa-share-alt"></i></a></h5>
+               <h5 class="card-title border-bottom pb-3">Yummy Articulos </h5>
                <p class="card-text">Consegui nuevos articulos por nuestra tienda Yummy Articulos con descuentos de hasta un 50% en todo el pais</p>
                <button type="submit" class="btn btn-yellow btn-block">Ver Articulos</button>
             </div>
@@ -285,15 +285,3 @@
       </div>
     </div>
 </div>
-
-
-
-
-<!-- <div class="row">
-  <div *ngFor="let presentation of presentations" class="col-4 card">
-      <a [routerLink]="['/presentation', presentation._id]"><img class="card-img-top" src="..." alt="Card image cap"></a>
-      <div class="card-block">
-          ...
-      </div>
-  </div>
-</div> -->

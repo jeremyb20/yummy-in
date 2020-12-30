@@ -26,6 +26,7 @@ import { ProfileCompanyComponent } from './profile/profile-company/profile-compa
 import { ProfileDriverComponent } from './profile/profile-driver/profile-driver.component';
 import { AdminMasterComponent } from './admin-master/admin-master.component';
 import { MapComponent } from './map/map.component';
+import { MenusComponent } from './menus/menus.component';
 
 
 const routes: Routes = [
@@ -61,7 +62,8 @@ const routes: Routes = [
         { path: 'profile-user', component: ProfileUserComponent ,canActivate: [AdminGuard]},
         { path: 'profile-company', component: ProfileCompanyComponent ,canActivate: [AdminGuard]},
         { path: 'profile-driver', component: ProfileDriverComponent ,canActivate: [AdminGuard]},
-        { path: 'map', component: MapComponent ,canActivate: [AdminGuard]},
+        { path: 'dashboard-user-map', component: MapComponent ,canActivate: [AdminGuard]},
+        { path: 'dashboard-user-menus', component: MenusComponent ,canActivate: [AdminGuard]},
         { path: '404', component: NotFoundComponent},
         { path: '**', redirectTo: '/404' }
 

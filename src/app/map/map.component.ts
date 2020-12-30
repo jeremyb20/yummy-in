@@ -43,6 +43,8 @@ export class MapComponent implements OnInit {
   origin : any;
   destination : any;
 
+  currentTimer: any;
+
   public renderOptions = {
     suppressMarkers: true,
   }
@@ -69,6 +71,20 @@ export class MapComponent implements OnInit {
         this.Media = media;
       });
       this.setCurrentPosition();
+
+      var today = new Date()
+      var curHr = today.getHours()
+      
+      if (curHr < 12) {
+        console.log('good morning')
+        this.currentTimer = lightStyle;
+      } else if (curHr < 18) {
+        this.currentTimer = darkStyle;
+        console.log('good afternoon')
+      } else {
+        this.currentTimer = darkStyle;
+        console.log('good evening')
+      }
   }
 
   ngOnInit() {
@@ -262,7 +278,6 @@ export class MapComponent implements OnInit {
 
             else
               console.log('somethin happened')
-
               if(this.trackingRoute){
                 this.trackMe();
               }  

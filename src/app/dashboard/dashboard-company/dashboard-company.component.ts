@@ -73,8 +73,8 @@ export class DashboardCompanyComponent implements OnInit, OnDestroy {
     },
     dateClick: this.handleDateClick.bind(this,true), // bind is important!
     events: [
-      { title: 'event 1', date: '2020-12-23' },
-      { title: 'event 2', date: '2020-12-24' }
+      { title: 'event 1', date: '2020-12-28' },
+      { title: 'event 2', date: '2020-12-29' }
     ],
     validRange: {
       start: new Date()
@@ -146,8 +146,8 @@ export class DashboardCompanyComponent implements OnInit, OnDestroy {
         this.myfoodMenu = data;
         this.showPanelMenuItem = this.myfoodMenu.slice(-1).pop();
         this.events = [
-          { title: 'event 3', date: '2020-12-25' },
-          { title: 'event 4', date: '2020-12-25' }
+          { title: 'event 3', date: '2020-12-28' },
+          { title: 'event 4', date: '2020-12-29' }
         ]
         this.calendarOptions.events = this.events;
       }
