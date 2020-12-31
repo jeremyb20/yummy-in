@@ -26,11 +26,15 @@ export class MenusComponent implements OnInit, OnDestroy {
   user : any;
   Media: MediaResponse;
   restaurantMenu: any;
+  oldRestaurantMenu: any;
 
   showToolbarMenu: boolean = true;
   showMapInfo: boolean = false;
   example: [];
   index: number;
+  isMenuSelected: boolean = false
+
+  loading: boolean = false;
 
   constructor(private authService: AuthServices, private media: MediaService, private router: Router, private companyService: CompanyService,private _notificationSvc: NotificationService, private _location: Location) {
       //this.located = false;
@@ -68,25 +72,38 @@ export class MenusComponent implements OnInit, OnDestroy {
     this.companyService.getRestaurantMenuList().subscribe(data => {
       if(data.length>0) {
         this.restaurantMenu = data;
-        // this.restaurantMenu.forEach(function(element, index) {
-
-        //   console.log(index);
-        //   element.newMenu.slice(0,6)
-        // });
-        
-        
-        // for (let value of this.restaurantMenu) {
-        //   value.newMenu.slice(0,6)                                      /// este va sirviendo 
-        //   console.log(value.newMenu.slice(0,6));  
-        // }
-
-
+        this.oldRestaurantMenu = data;
       }
     },
     error => {
       $('#newMenuModal').modal('hide');
       this._notificationSvc.warning('Hola '+this.user.companyName+'', 'Ocurrio un error favor contactar a soporte o al administrador del sitio', 6000);
     });
+  }
+
+  buyProduct(obj:any){
+    console.log(obj);
+    $('#newMenuModal').modal('show');
+  }
+
+  showAllListProduct(company: any) {
+      this.loading = true;
+      this.isMenuSelected = true;
+      this.companyService.getCompanyMenuList(company.idCompany).subscribe(data => {
+        if(data != undefined) {
+          this.loading = false;
+          this.restaurantMenu = data;
+        }
+      },
+      error => {
+        $('#newMenuModal').modal('hide');
+        this._notificationSvc.warning('Hola '+this.user.companyName+'', 'Ocurrio un error favor contactar a soporte o al administrador del sitio', 6000);
+      });
+  }
+
+  goBackMenu(){
+    this.isMenuSelected = false;
+    this.restaurantMenu = this.oldRestaurantMenu;
   }
 
   goBack() {

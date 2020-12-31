@@ -1,7 +1,49 @@
+@import "../../scss/partials/bootstrap-breakpoints";
 .menu-component {
-    .card{
-        box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+    .box{
+        box-shadow: 0 3px 42px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12) !important;
     }
+
+    $loader-colors: dodgerblue, mediumspringgreen, crimson, peachpuff, chocolate, pink;
+    $loader-dash: 63;
+    $loader-duration: length($loader-colors) * 1s;
+    $loader-duration-alt: $loader-duration / length($loader-colors);
+    $loader-keyframe: 1 / (length($loader-colors) * 2) * 100;
+
+    .loader {
+        animation: loader-turn $loader-duration-alt linear infinite;
+        max-width: 105px;
+        width: 100%;
+      
+        @keyframes loader-turn {
+          50% { transform: rotate(180deg) }
+          100% { transform: rotate(720deg) }
+        }
+      }
+      
+      .loader__value {
+        animation: loader-stroke $loader-duration linear infinite; 
+        fill: none;
+        stroke-dasharray: $loader-dash;
+        stroke-dashoffset: $loader-dash;
+        stroke-linecap: round;
+        stroke-width: 4;
+      
+        @for $i from 1 through length($loader-colors) {
+          &:nth-child(#{$i}) {
+            stroke: nth($loader-colors, $i);
+            
+            @if $i > 1 {
+              animation-delay: ($i - 1) * $loader-duration-alt;
+            }
+          }
+        }
+        
+        @keyframes loader-stroke {
+          #{$loader-keyframe * 1%} { stroke-dashoffset: 0 }
+          #{$loader-keyframe * 2%}, 100% { stroke-dashoffset: $loader-dash }
+        }
+      }
 
     .card {
         font-size: 1em;
@@ -72,6 +114,40 @@
     
     .meta a:hover {
         color: rgba(0, 0, 0, .87);
+    }
+
+    .boton-down {
+      position: sticky;
+      bottom: 15px;
+      width: 13%;
+      height: 51px;
+      margin: 25px;
+      border-radius: 55px;
+      border: 2px solid #F9A825;
+      background-color: #F9A825;
+      color: #fff;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    @include media-breakpoint-up(md) {
+      .boton-down {
+        position: sticky;
+        bottom: 15px;
+        width: 5%;
+        height: 51px;
+        margin: 25px;
+        border-radius: 55px;
+        border: 2px solid #F9A825;
+        background-color: #F9A825;
+        color: #fff;
+        font-weight: bold;
+        letter-spacing: 1px;
+      }
+    }
+    .boton-down:hover {
+      background-color: #F57F17;
+      border: 2px solid #F57F17;
     }
     
 }

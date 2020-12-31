@@ -76,6 +76,18 @@ export class CompanyService {
     }
   }
 
+  getCompanyMenuList(id):Observable<any> {
+    let headers = new Headers();
+    this.loadToken();
+    headers.append('Authorization', this.authToken);
+    headers.append('Content-Type', 'application/json');
+    if (this.isDev) {
+      return this.httpClient.get<any>('http://localhost:8080/company/getCompanyMenu/' + id);
+    } else {
+      return this.httpClient.get<any>('company/getCompanyMenu/' + id);
+    }
+  }
+
   updateNewMenu(menu, photo:any):Observable<any> { 
     const fd = new FormData();
     fd.append('foodName',menu.foodName);

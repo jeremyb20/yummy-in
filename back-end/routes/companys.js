@@ -154,6 +154,23 @@ router.get('/getAllMenuList/:id', function(req, res){
   });
 });
 
+router.get('/getCompanyMenu/:id', function(req, res){
+  var id = req.params.id;
+  Company.findById(id, function(err, results){
+    if(err){
+      res.send('Algo ocurrio favor contactar a soporte');
+      next();
+    }
+    var objec =[{
+      newMenu: results.newMenu,
+      companyName: results.companyName,
+      idCompany: results._id
+      }  
+    ]
+    res.json(objec);
+  });
+});
+
 router.get('/getRestaurantMenuList/', function(req, res){
   Company.find({}, function(err, company){
     const obj = JSON.parse(JSON.stringify(company));
@@ -165,8 +182,9 @@ router.get('/getRestaurantMenuList/', function(req, res){
       obj.forEach(element => {
         if(element.newMenu.length>0){
           var objec ={
-            newMenu: element.newMenu.slice(0,6),
-            companyName: element.companyName
+            newMenu: element.newMenu.slice(0,4),
+            companyName: element.companyName,
+            idCompany: element._id
           }
             list.push(objec)
         }
