@@ -82,7 +82,6 @@ export class MenusComponent implements OnInit, OnDestroy {
   }
 
   buyProduct(obj:any){
-    console.log(obj);
     $('#newMenuModal').modal('show');
   }
 
